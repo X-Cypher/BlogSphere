@@ -12,18 +12,14 @@ function EditPost() {
   useEffect(() => {
 
     if(slug){ //if slug is present, fetch the post by slug
-      postService.getPost(slug)
-      .then((currPost) => {
-
-        if(currPost){
-          setPost(currPost)
-        }
-
-      })
-    } else{ //if slug is not present, navigate to home page
+      currPost = postService.getPost(slug)
+      if(currPost){
+        setPost(currPost)
+      } else{ //if slug is not present, navigate to home page
       navigate('/')
     }
-  }, [slug, navigate])
+  }
+}, [slug, navigate])
 
   return (
     post ? (
