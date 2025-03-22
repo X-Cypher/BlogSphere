@@ -53,7 +53,7 @@ export default function Post() {
 
                     {isAuthor && ( //if current user is the author of the post, show edit and delete button
                         <div className='absolute right-6 top-6'>
-                            <Link to= {`/edit/${post.$id}`}>
+                            <Link to= {`/edit-post/${post.$id}`}>
                                 <Button btnText="Edit" bgColor='bg-green-500' className='mr-3' />
                             </Link>
                             <Button btnText="Delete" bgColor='bg-red-500' onClick={deletePost} />
