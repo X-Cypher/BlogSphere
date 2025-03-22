@@ -12,14 +12,19 @@ function EditPost() {
   useEffect(() => {
 
     if(slug){ //if slug is present, fetch the post by slug
-      currPost = postService.getPost(slug)
-      if(currPost){
-        setPost(currPost)
-      } else{ //if slug is not present, navigate to home page
+      postService.getPost(slug)
+      .then((currPost) => {
+
+        if(currPost){
+          setPost(currPost)
+        }
+      }).catch(() => {
+        navigate('/')
+      })
+    } else{ //if slug is not present, navigate to home page
       navigate('/')
     }
-  }
-}, [slug, navigate])
+  }, [slug, navigate])
 
   return (
     post ? (
@@ -28,7 +33,9 @@ function EditPost() {
           <PostForm post={post} />
         </Container>
       </div>
-    ): null
+    ): (
+      <h1 className='text-3xl my-4'> 404 Post not found</h1>
+    )
   )
 }
 
